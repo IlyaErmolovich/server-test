@@ -22,7 +22,7 @@ app.get("/", function(request, response){
     <script>
         let wss = undefined;
         function connectToServer(){
-            wss = new WebSocket("http://localhost:4444/");
+            wss = new WebSocket("${request.ip}");
         }
 
         function disconnectFromServer(){
@@ -33,7 +33,7 @@ app.get("/", function(request, response){
     </script>
 </html>
         `);
-});
+    });
 
 wss.on('connection', (ws) => {
     console.log('Клиент подключился через WebSocket');
@@ -51,5 +51,6 @@ wss.on('connection', (ws) => {
 });
 
 server.listen(4444, () => {
-    console.log("Server started");
+    console.log(`Server started`);
 });
+
